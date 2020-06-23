@@ -115,7 +115,9 @@ src_unpack() {
 		sed -i "s|\(mktemp \(-d \)\?\)/tmp|\1/tmp/foo|g" "${bundle}"
 	fi
 
-	./${bundle} --console --required --eulas-agreed --extract=extracted || die "unable to extract bundle"
+	./${bundle} --console --required --eulas-agreed --extract=extracted
+	RESULT=$?
+	if ((RESULT)); then die "unable to extract bundle $((RESULT))"; fi
 
 	if ! use vix; then
 		rm -r extracted/vmware-vix-core extracted/vmware-vix-lib-Workstation* || die "unable to remove dir"
