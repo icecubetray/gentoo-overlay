@@ -112,7 +112,9 @@ src_unpack() {
 	chmod 755 "${bundle}"
 
 	if grep -qF 'mktemp -d /tmp/vmis.X' "${bundle}"; then
-		sed -i "s|\(mktemp \(-d \)\?\)/tmp|\1${WORKDIR}|g" "${bundle}"
+		PATCH_BUNDLE_TEMP="${FILESDIR}/patch_bundle_temp.sh";
+		chmod +x "${PATCH_BUNDLE_TEMP}";
+		"${PATCH_BUNDLE_TEMP}" "${T}" "${bundle}";
 	fi
 
 	BASH_XTRACEFD=69 VMIS_KEEP_TEMP=y bash -x ./${bundle} --console --required --eulas-agreed --extract=extracted 69>"${T}/xtrace.log"
