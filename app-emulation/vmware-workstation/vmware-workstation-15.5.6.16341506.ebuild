@@ -112,7 +112,7 @@ src_unpack() {
 	chmod 755 "${bundle}"
 
 	if grep -qF 'mktemp -d /tmp/vmis.X' "${bundle}"; then
-		sed -i "s|\(mktemp \(-d \)\?\)/tmp|\1/tmp/foo|g" "${bundle}"
+		sed -i "s|\(mktemp \(-d \)\?\)/tmp|\1${WORKDIR}|g" "${bundle}"
 	fi
 
 	./${bundle} --console --required --eulas-agreed --extract=extracted
