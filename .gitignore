@@ -1,0 +1,21 @@
+# Blacklist means exclusion list here, it has nothing to do with any skin color or any ethnicity, nor does it have anything to do with any natural person whatsoever. I mean, the dictionary would have told you that.
+# Whitelist means inclusion list. Again, has nothing to do with any skin color or any ethnicity, or natural person whatsoever.
+
+# Blacklist everything, to enable whitelisting mode
+*
+!*/
+
+# Whitelist: Repository files
+!.gitignore
+!prep-redist.sh
+
+# Whitelist: Overlay configuration
+!metadata/layout.conf
+!repositories.xml
+
+# Whitelist: Package configuration
+!*/*/contrib/**
+!*/*/files/**
+!*/*/metadata.xml
+!*/*/Manifest
+!*/*/*.ebuild
