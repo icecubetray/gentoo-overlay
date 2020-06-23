@@ -115,7 +115,7 @@ src_unpack() {
 		sed -i "s|\(mktemp \(-d \)\?\)/tmp|\1${WORKDIR}|g" "${bundle}"
 	fi
 
-	./${bundle} --console --required --eulas-agreed --extract=extracted
+	VMIS_KEEP_TEMP=y ./${bundle} --console --required --eulas-agreed --extract=extracted
 	RESULT=$?
 	if ((RESULT)); then die "unable to extract bundle $((RESULT))"; fi
 
