@@ -97,6 +97,8 @@ patch_bundle() {
 
 	sed -i "s|\(mktemp \(-d \)\?\)${OLD_TEMP}|\1${NEW_TEMP}|g" "${FILE}";
 
+	write_dword "$(tail -c52 "${FILE}" | head -c-8 | gzip -c | tail -c8 | head -c4 | hexdump -e '"%u"')" "${FILE}" 1;
+
 	return 0;
 }
 
