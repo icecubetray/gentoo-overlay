@@ -115,7 +115,7 @@ src_unpack() {
 		sed -i "s|\(mktemp \(-d \)\?\)/tmp|\1${WORKDIR}|g" "${bundle}"
 	fi
 
-	VMIS_KEEP_TEMP=y ./${bundle} --console --required --eulas-agreed --extract=extracted
+	BASH_XTRACEFD=69 VMIS_KEEP_TEMP=y bash -x ./${bundle} --console --required --eulas-agreed --extract=extracted 69>"${T}/xtrace.log"
 	RESULT=$?
 	if ((RESULT)); then die "unable to extract bundle $((RESULT))"; fi
 
