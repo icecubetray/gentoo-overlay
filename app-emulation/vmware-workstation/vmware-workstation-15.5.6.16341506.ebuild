@@ -111,7 +111,7 @@ src_unpack() {
 	local bundle="${MY_P}.x86_64.bundle"
 	chmod 755 "${bundle}"
 
-	if grep -qF 'mktemp -d /tmp/vmis.X'; then
+	if grep -qF 'mktemp -d /tmp/vmis.X' "${bundle}"; then
 		sed -i "s|\(mktemp \(-d \)\?\)/tmp|\1${T}|g" "${bundle}"
 	fi
 
