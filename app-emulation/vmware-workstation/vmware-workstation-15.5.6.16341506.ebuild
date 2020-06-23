@@ -110,7 +110,11 @@ src_unpack() {
 	export LC_ALL=C # https://communities.vmware.com/thread/618570?start=15&tstart=0
 	local bundle="${MY_P}.x86_64.bundle"
 	chmod 755 "${bundle}"
-	# this needs a /tmp mounted without "noexec" because it extracts and executes scripts in there
+
+	if grep -qF 'mktemp -d /tmp/vmis.X'; then
+		sed -i "s|\(mktemp \(-d \)\?\)/tmp|\1${T}|g" "${bundle}"
+	fi
+
 	./${bundle} --console --required --eulas-agreed --extract=extracted || die "unable to extract bundle"
 
 	if ! use vix; then
