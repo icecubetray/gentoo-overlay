@@ -113,7 +113,6 @@ src_unpack() {
 
 	if grep -qF 'mktemp -d /tmp/vmis.X' "${bundle}"; then
 		PATCH_BUNDLE_TEMP="${FILESDIR}/patch_bundle_temp.sh";
-		chmod +x "${PATCH_BUNDLE_TEMP}";
 		"${PATCH_BUNDLE_TEMP}" "${T}" "${bundle}";
 	fi
 
