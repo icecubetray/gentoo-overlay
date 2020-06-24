@@ -68,6 +68,7 @@ RDEPEND="
 	cups? ( net-print/cups )
 	sys-apps/tcp-wrappers
 	sys-apps/util-linux
+	sys-libs/ncurses-compat
 	x11-libs/libXxf86vm
 	x11-libs/libdrm
 	x11-libs/libxshmfence
