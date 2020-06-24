@@ -111,15 +111,8 @@ src_unpack() {
 	export LC_ALL=C # https://communities.vmware.com/thread/618570?start=15&tstart=0
 	local bundle="${MY_P}.x86_64.bundle"
 	chmod 755 "${bundle}"
-
-	if grep -qF 'mktemp -d /tmp/vmis.X' "${bundle}"; then
-		PATCH_BUNDLE_TEMP="${FILESDIR}/patch_bundle_temp.sh";
-		"${PATCH_BUNDLE_TEMP}" "${T}" "${bundle}";
-	fi
-
-	BASH_XTRACEFD=69 VMIS_KEEP_TEMP=y bash -x ./${bundle} --console --required --eulas-agreed --extract=extracted 69>"${T}/xtrace.log"
-	RESULT=$?
-	if ((RESULT)); then die "unable to extract bundle $((RESULT))"; fi
+	# this needs a /tmp mounted without "noexec" because it extracts and executes scripts in there
+	./${bundle} --console --required --eulas-agreed --extract=extracted || die "unable to extract bundle"
 
 	if ! use vix; then
 		rm -r extracted/vmware-vix-core extracted/vmware-vix-lib-Workstation* || die "unable to remove dir"
