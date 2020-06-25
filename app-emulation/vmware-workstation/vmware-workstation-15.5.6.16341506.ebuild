@@ -54,9 +54,6 @@ RDEPEND="
 	dev-libs/icu
 	dev-libs/json-c
 	dev-libs/nettle:0
-	gnome-base/dconf
-	gnome-base/gconf
-	gnome-base/libgnome-keyring
 	media-gfx/graphite2
 	media-libs/alsa-lib
 	media-libs/libart_lgpl
